@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>منيو ونس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#1d1e20; --board2:#26272a; --chalk:#f4f1e8; --dim:#b9b6ac; --line:rgba(244,241,232,.28); --accent:#f0d48a;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+body{
+  margin:0; background:var(--board); color:var(--chalk);
+  font-family:"Tajawal","Segoe UI",Tahoma,sans-serif; font-size:18px; line-height:1.5;
+  background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1.4px),radial-gradient(rgba(0,0,0,.25) 1px,transparent 1.6px);
+  background-size:7px 7px,11px 11px; background-position:0 0,3px 4px;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--board);z-index:10}
+header{text-align:center;padding:34px 16px 18px}
+.logo{font-family:"Aref Ruqaa",serif;font-weight:700;font-size:clamp(64px,18vw,104px);line-height:1;margin:0}
+.en{font-family:"Aref Ruqaa",serif;letter-spacing:.32em;font-size:20px;color:var(--accent);margin:6px 0 0;direction:ltr;padding-inline-start:.32em}
+.note{color:var(--dim);font-size:15px;margin:14px 0 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--board);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;font:inherit;font-size:16px;color:var(--chalk);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 16px;cursor:pointer}
+nav button[aria-current="true"]{background:var(--chalk);color:var(--board);border-color:var(--chalk)}
+nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{max-width:1000px;margin:0 auto;padding:8px 18px 40px;display:grid;grid-template-columns:1fr;column-gap:56px}
+@media(min-width:820px){main{grid-template-columns:1fr 1fr}}
+section{padding-top:26px;break-inside:avoid}
+h2{font-family:"Aref Ruqaa",serif;font-weight:700;font-size:38px;line-height:1.2;margin:0 0 6px;padding-bottom:6px;border-bottom:2px solid var(--chalk);border-radius:2px 40px 3px 30px/3px 2px 3px 2px}
+h2 small{font-family:"Tajawal",sans-serif;font-weight:400;font-size:15px;color:var(--accent);margin-inline-start:10px}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;align-items:baseline;gap:8px;padding:5px 0}
+li .n{flex:none}
+li .d{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
+li .p{flex:none;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.sub{color:var(--dim);font-size:15px;margin:10px 0 0}
+footer{text-align:center;color:var(--dim);font-size:14px;padding:10px 16px 34px;border-top:1px solid var(--line);max-width:1000px;margin:0 auto}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="logo">ونس</h1>
+  <p class="en">WANAS</p>
+  <p class="note">الأسعار بالجنيه المصري</p>
+</header>
+<nav id="nav" aria-label="أقسام المنيو"></nav>
+<main id="menu"></main>
+<footer>اطلب من الويتر، وبالهنا والشفا</footer>
+<script>
+var M=[
+{id:"hot",t:"سخن",i:[["شاي",10],["شاي حليب",20],["شاي أخضر",10],["شاي فواكه",15],["شاي كرك",25],["ينسون",10],["نعناع",10],["كركديه",10],["قرفة",10],["جنزبيل",10],["كوفي مكس",15],["نسكافيه",25],["كابتشينو لاتيه",30],["كابتشينو موكا",30],["كابتشينو بندق",30],["كابتشينو فانيليا",30],["هوت شوكليت",30],["سحلب ساده",25],["سحلب أوريو",40],["سحلب لوتس",40],["سحلب أطعم",35]]},
+{id:"coffee",t:"القهوة",i:[["تركي",20],["بن العميد",30],["فرنساوي",30],["بندق",30],["إسبريسو","30–40"],["لاتيه",40],["سبانيش لاتيه",50],["موكا",50]]},
+{id:"ice",t:"أيس",i:[["أيس لاتيه",40],["أيس سبانيش لاتيه",50],["أيس موكا",50],["أيس وايت موكا",50]]},
+{id:"shake",t:"ميلك شيك",i:[["أوريو",40],["هوهوز",40],["فراولة",40],["مانجة",40],["كارميل",40],["فانيليا",40],["لوتس",40],["شوكليت",40],["بلوبيري",40]]},
+{id:"mojito",t:"موهيتو",i:[["كلاسيك",30],["فراولة",30],["بطيخ",30],["خوخ",30],["رمان",30],["بلوبيري",30],["باشن فروت",30]]},
+{id:"juice",t:"عصائر",i:[["ليمون",25],["ليمون نعناع",25],["مانجة","30–40"],["فراولة","30–40"],["بلح",40],["موز",40],["جوافة","30–40"]]},
+{id:"ice-cream",t:"أيس كريم",s:"سعر البولة",i:[["فانيليا",15],["شوكولاتة",15],["فراولة",15],["مانجة",15],["بلوبيري",15],["إضافة بولة",5]]},
+{id:"cola",t:"كولا كان",i:[["كولا",20],["فيروز",25],["بيريل",25],["بيبسي دايت",25],["تويست",20],["ستينج",20],["مياه معدنية",5]]}
+];
+function ar(s){return String(s).replace(/[0-9]/g,function(d){return "٠١٢٣٤٥٦٧٨٩"[d]})}
+var menu=document.getElementById("menu"),nav=document.getElementById("nav");
+M.forEach(function(c,k){
+  var s=document.createElement("section");s.id=c.id;
+  var h=document.createElement("h2");h.textContent=c.t;
+  if(c.s){var sm=document.createElement("small");sm.textContent=c.s;h.appendChild(sm)}
+  var u=document.createElement("ul");
+  c.i.forEach(function(r){
+    var l=document.createElement("li");
+    l.innerHTML='<span class="n"></span><span class="d"></span><span class="p"></span>';
+    l.children[0].textContent=r[0];l.children[2].textContent=ar(r[1]);u.appendChild(l);
+  });
+  s.appendChild(h);s.appendChild(u);menu.appendChild(s);
+  var b=document.createElement("button");b.type="button";b.textContent=c.t;b.dataset.t=c.id;
+  b.addEventListener("click",function(){document.getElementById(c.id).scrollIntoView()});
+  nav.appendChild(b);
+});
+var btns=nav.querySelectorAll("button");
+function spy(){
+  var cur=M[0].id;
+  M.forEach(function(c){var e=document.getElementById(c.id);if(e.getBoundingClientRect().top<140)cur=c.id});
+  btns.forEach(function(b){var on=b.dataset.t===cur;b.setAttribute("aria-current",on);if(on&&b.scrollIntoView){var r=b.getBoundingClientRect(),n=nav.getBoundingClientRect();if(r.left<n.left||r.right>n.right)nav.scrollLeft+=r.left-n.left-n.width/2+r.width/2}});
+}
+window.addEventListener("scroll",spy,{passive:true});spy();
+</script>
+</body>
+</html>
